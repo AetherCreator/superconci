@@ -1,38 +1,35 @@
-# 🚀 Number Blasters
+# 🦸 SuperConci
 
-A Math Blasters-inspired arcade learning game for kids. Built as a React artifact with procedural chiptune audio.
+A personalized learning platform that grows with your kid.
 
-## What It Is
+Inspired by the golden age of educational games — JumpStart, Math Blasters, Reader Rabbit — rebuilt for the mobile era. Low stimulation, high yield. Every subject is an arcade game. An adaptive engine tracks what your kid knows and what they need next.
 
-Asteroids fall toward your ship — each one has a number on it. Blast the asteroid with the **correct answer** to the math problem before they reach you!
+## Games
 
-**Three difficulty tiers:**
-- 🚀 **Cadet** — Addition 1-5 (kindergarten)
-- 🛸 **Pilot** — Addition & subtraction 1-10 (1st grade)
-- ⭐ **Commander** — Addition & subtraction 1-20 (2nd grade)
+| Game | Subject | Status |
+|------|---------|--------|
+| 🚀 Number Blasters | Math | ✅ Playable |
+| 📖 Word Quest | Reading / Phonics | 🔮 Planned |
+| 🔬 Nature Lab | Science / Nature | 🔮 Planned |
+| 🎨 Art Studio | Art / Creativity | 🔮 Planned |
 
-## Features
+## How It Works
 
-- **Procedural chiptune music** — Web Audio API synth, no audio files needed
-- **Sound effects** — laser zaps, hit confirmations, impact rumbles, victory fanfares
-- **Combo system** — streak multiplier rewards consecutive correct answers (x2, x3, x4)
-- **Lives system** — 3 shields; miss an asteroid and it hits your ship
-- **Adaptive speed** — asteroids fall faster at higher difficulties
-- **iPhone-first** — touch-optimized, no keyboard required
+- **The Hub** — Space Command. Your kid is the captain. Each game is a destination.
+- **Adaptive Engine** — Tracks mastery per skill. Auto-adjusts difficulty. Targets weak spots.
+- **Parent Dashboard** — PIN-protected progress charts, time controls, skill heatmaps.
 
 ## Tech
 
-Single-file React component. No dependencies beyond React. All audio generated procedurally via Web Audio API.
+React PWA. Offline-first. All audio procedurally generated (Web Audio API). Installable on any device. No accounts, no servers, no data collection — everything stays on-device.
 
-## Roadmap
+## Philosophy
 
-This is the seed of a personalized learning platform:
-- [ ] Adaptive difficulty (track weak spots, serve more of those)
-- [ ] Multiplication & division modules
-- [ ] Word problems
-- [ ] Parent dashboard with progress tracking
-- [ ] Unlock/reward system
-- [ ] Reading/phonics module (same arcade mechanic)
+1. Low stim, high yield — no ads, no lootboxes, no manipulation
+2. Adaptive, not fixed — difficulty follows the kid
+3. Celebrate everything — positive reinforcement is the pedagogy
+4. Offline-first — works anywhere
+5. Dad-built — every decision filtered through "would I want my kid using this?"
 
 ## License
 
