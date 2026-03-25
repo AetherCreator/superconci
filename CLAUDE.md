@@ -1,0 +1,160 @@
+# SuperConci — Claude Code Context
+
+## Project Overview
+A personalized learning platform for kids that grows with them — inspired by
+JumpStart (1994) and Math Blasters (1987). Multiple arcade-style mini-games
+across every subject, wrapped in a world hub that tracks progress and adapts
+difficulty to the child's actual skill level.
+
+**Player:** Concetto ("Conci"), age 5, starting kindergarten-level.
+**Builder:** Tyler (dad), working from iPhone 15 Pro + iPad only.
+**Tech:** React PWA, mobile-first, offline-capable, installable.
+
+The platform is designed so that EVERY subject shares the same engagement
+architecture: arcade action on top, adaptive learning engine underneath.
+New games are pluggable modules — each one teaches a different skill through
+a different mechanic.
+
+## Developer Constraints
+- Tyler works from iPhone 15 Pro and iPad ONLY — no terminal, no desktop IDE
+- All code must be complete files, never fragments
+- Mobile-first touch interface (no keyboard/mouse assumed)
+- Must work offline (PWA with service worker)
+- Commit frequently with descriptive messages
+
+## Architecture
+
+### Platform Layer (shared)
+```
+src/
+├── App.jsx                  ← Router + hub shell
+├── hub/                     ← World hub (game selector, avatar, progress)
+│   ├── WorldHub.jsx         ← Main hub screen with game portals
+│   ├── Avatar.jsx           ← Kid's character/profile
+│   └── ProgressMap.jsx      ← Visual progress across all subjects
+├── engine/                  ← Shared learning engine
+│   ├── AdaptiveEngine.js    ← Difficulty adjustment algorithm
+│   ├── ProgressTracker.js   ← Cross-game stats + streaks
+│   ├── AchievementSystem.js ← Unlocks, badges, rewards
+│   └── SessionManager.js    ← Play time limits, session stats
+├── components/              ← Shared UI (buttons, modals, animations)
+├── audio/                   ← Shared audio engine (Web Audio API)
+├── data/                    ← Persistent storage (IndexedDB via Dexie)
+└── games/                   ← Game modules (each is self-contained)
+    ├── number-blasters/     ← Math: shoot asteroids with correct answers
+    ├── word-quest/          ← Reading/Phonics: [future]
+    ├── nature-lab/          ← Science/Nature: [future]
+    └── art-studio/          ← Art/Creativity: [future]
+```
+
+### Game Module Contract
+Every game module exports:
+```javascript
+export default {
+  id: "number-blasters",
+  name: "Number Blasters",
+  subject: "math",
+  icon: "🚀",
+  component: NumberBlasters,       // The React component
+  skills: ["addition", "subtraction", "multiplication", "division"],
+  gradeRange: [0, 5],              // K through 5th grade
+  getProgress: (stats) => {...},   // Returns 0-100 mastery
+  generateProblem: (skill, level) => {...},  // Pluggable problem generator
+}
+```
+
+### Adaptive Engine
+The core intelligence — tracks what the kid gets right/wrong and adjusts:
+- **Skill mastery**: per-skill accuracy over last 20 attempts
+- **Auto-level**: moves up when mastery > 85%, down when < 50%
+- **Weak spot targeting**: serves more problems in weak areas
+- **Spaced repetition**: revisits mastered skills periodically
+- **Session pacing**: mixes easy wins with challenges (70/30 ratio)
+
+### Data Model (IndexedDB via Dexie)
+```
+profiles:    { id, name, avatar, createdAt }
+sessions:    { id, profileId, gameId, startedAt, endedAt, stats }
+skillStats:  { id, profileId, skill, level, attempts, correct, lastPlayed }
+achievements:{ id, profileId, achievementId, unlockedAt }
+settings:    { id, profileId, soundOn, musicOn, parentPin }
+```
+
+## Current State
+- **Number Blasters v2**: BUILT — lives in `src/games/number-blasters/`
+  - Procedural chiptune music (Web Audio API)
+  - Sound effects (laser, correct, wrong, impact, combo, victory, game over)
+  - 3 difficulty tiers (Cadet/Pilot/Commander)
+  - Combo streak system (x2/x3/x4 multiplier)
+  - 3-life shield system with lose condition
+  - Addition + subtraction, number ranges 1-20
+
+## Game Modules Roadmap
+
+### 🚀 Number Blasters (Math) — BUILT
+Asteroids fall with numbers. Blast the correct answer.
+- K: Addition 1-5
+- 1st: Addition/subtraction 1-10
+- 2nd: Addition/subtraction 1-20
+- 3rd: Multiplication tables
+- 4th: Division, multi-step
+- 5th: Fractions, decimals, order of operations
+
+### 📖 Word Quest (Reading / Phonics) — PLANNED
+Side-scrolling adventure. Collect letters to spell words, match words to pictures.
+- Pre-K: Letter recognition, letter sounds
+- K: CVC words (cat, dog, run), sight words
+- 1st: Blends, digraphs, sentences
+- 2nd: Vocabulary, reading comprehension
+- 3rd+: Paragraph comprehension, context clues
+
+### 🔬 Nature Lab (Science / Nature) — PLANNED
+Experiment-based puzzles. Mix, observe, hypothesize.
+- K: Animals, plants, weather, senses
+- 1st: Habitats, life cycles, materials
+- 2nd: Simple machines, states of matter
+- 3rd+: Solar system, ecosystems, human body
+
+### 🎨 Art Studio (Art / Creativity) — PLANNED
+Creative sandbox with guided challenges.
+- All ages: Color mixing, pattern recognition, symmetry
+- Drawing prompts, pixel art, music maker
+- Connects to other subjects (draw a habitat, illustrate a story)
+
+## Design Language
+- **Space theme** for the hub (SuperConci = space captain of their learning ship)
+- Each game module has its OWN visual identity within the hub frame
+- Retro-arcade aesthetic with modern polish (chunky but smooth)
+- Font: Press Start 2P for headers, clean sans-serif for reading content
+- Neon-on-dark palette with per-game accent colors
+- BIG touch targets — this is a 5-year-old on a phone/tablet
+- Celebratory feedback EVERYWHERE — kids thrive on positive reinforcement
+
+## Parent Dashboard (Future)
+- PIN-protected settings area
+- Per-subject progress charts
+- Time played per session/day/week
+- Skill mastery heatmap
+- Difficulty override controls
+- Multiple child profiles
+
+## Coding Conventions
+- Each game module is fully self-contained in its folder
+- Shared engine code lives in `src/engine/`
+- Web Audio API for all sound — no audio file dependencies
+- IndexedDB via Dexie for all persistence
+- Tailwind for shared components, inline styles OK for game-specific rendering
+- React functional components + hooks only
+
+## Build & Deploy
+- React 18 + Vite + Tailwind
+- PWA: vite-plugin-pwa (offline, installable)
+- Deploy: Vercel
+- Target: superconci.app (domain TBD)
+
+## When Working on This Repo
+1. Read this file first — always
+2. Check BUILD-INSTRUCTIONS.md for current phase priorities
+3. Game modules are independent — don't create cross-game dependencies
+4. The adaptive engine is the brain — keep it clean and well-tested
+5. Commit after each logical unit of work
