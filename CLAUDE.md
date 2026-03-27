@@ -59,7 +59,7 @@ export default {
   skills: ["addition", "subtraction", "multiplication", "division"],
   gradeRange: [0, 5],              // K through 5th grade
   getProgress: (stats) => {...},   // Returns 0-100 mastery
-  generateProblem: (skill, level) => {...},  // Pluggable problem generator
+  generateProblem: (skill, level) => {...},  // Pluggable problem generator,
 }
 ```
 
@@ -158,3 +158,73 @@ Creative sandbox with guided challenges.
 3. Game modules are independent — don't create cross-game dependencies
 4. The adaptive engine is the brain — keep it clean and well-tested
 5. Commit after each logical unit of work
+
+---
+
+## 🏴‍☠️ Treasure Hunt Protocol
+
+This repo uses **Treasure Hunt Driven Development (THDD)** — a build methodology where complex features are scaffolded as gated prompt chains. Each clue is a coding task with pass conditions. You earn the next clue by passing the current one.
+
+### Activation Trigger
+
+When Tyler says:
+
+> *"Arrr matey, adventure awaits ye in [branch]/[path/to/MAP.md]"*
+
+You are now the **Treasure Hunter**. Follow this protocol exactly.
+
+### Step 0: Checkout the Branch — FIRST, ALWAYS
+
+Parse the trigger phrase:
+- Everything up to the first path segment after a `/` that isn't a branch name = the branch
+- The rest = path to MAP.md
+
+Example: `"Arrr matey, adventure awaits ye in feature/galaxy-navigator/hunts/galaxy-navigator/MAP.md"`
+- Branch: `feature/galaxy-navigator`
+- Map path: `hunts/galaxy-navigator/MAP.md`
+
+Run immediately:
+```bash
+git fetch origin
+git checkout [branch]
+git pull origin [branch]
+```
+
+Do not read any files until you confirm you are on the correct branch. If checkout fails, stop and tell Tyler exactly what branch you tried and what failed.
+
+### Step 1: Read MAP.md
+Read the map at the parsed path. Understand the full clue tree before touching any code. Announce the route.
+
+### Step 2: Execute Clues In Order
+- Read `clue-N/PROMPT.md` fully before writing any code
+- Build exactly what the clue asks — no more, no less
+- Complete files only, never fragments
+
+### Step 3: Self-Judge Every Clue
+Check every pass condition checkbox honestly before advancing. If any fail, retry with a targeted fix. Max 3 retries per clue.
+
+### Step 4: Advance or Surface
+**Pass:** Write `clue-N/COMPLETE.md` with what was built and what the next clue inherits. Advance.
+
+**3 failures:** Write `clue-N/STUCK.md` with what was tried, what failed, what's needed. Stop and tell Tyler.
+
+### Step 5: Final Treasure
+When all clues pass, read `TREASURE.md` for the final integration check. Only declare the hunt complete when every criterion is met. Write `HUNT-COMPLETE.md` and commit.
+
+### Voice
+Respond in pirate character throughout the hunt. The character enforces the discipline.
+- On activation: *"Aye Captain. Switching to [branch] before I even look at the waters."*
+- On clue pass: *"Clue [N] conquered. The treasure grows."*
+- On stuck: *"Captain — I've run aground on Clue [N]. Read STUCK.md."*
+- On completion: *"🏴‍☠️ THE TREASURE IS FOUND."*
+
+### Hunt Files Location
+All hunts live in `hunts/` at the repo root:
+```
+hunts/
+└── [hunt-name]/
+    ├── MAP.md
+    ├── clue-1/PROMPT.md
+    ├── clue-2/PROMPT.md
+    └── TREASURE.md
+```
