@@ -1,5 +1,5 @@
-import GalaxyHub from "./hub/GalaxyHub.jsx"
+import GalaxyNavigator from "./hub/GalaxyNavigator.jsx"
 
 export default function App() {
-  return <GalaxyHub />
+  return <GalaxyNavigator />
 }
