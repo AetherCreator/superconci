@@ -10,11 +10,10 @@ import StreamHandler from './StreamHandler.js';
 const MAX_SEGMENTS = 20;
 
 export default class StoryEngine {
-  constructor({ storyId, packId, heroData, apiKey, onSegment, onChoices, onEnding, onError }) {
+  constructor({ storyId, packId, heroData, onSegment, onChoices, onEnding, onError }) {
     this.storyId = storyId;
     this.packId = packId;
     this.heroData = heroData; // { name, description, pronoun, possessive }
-    this.apiKey = apiKey;
     this.onSegment = onSegment;       // (text, source) — called when text ready/streaming
     this.onChoices = onChoices;       // (choices, allowFreeText) — called when choices ready
     this.onEnding = onEnding;         // (text) — called when story ends
@@ -29,7 +28,6 @@ export default class StoryEngine {
     this.streamHandler = new StreamHandler({
       heroData,
       worldId: null, // Set when playing
-      apiKey,
     });
   }
 
@@ -86,10 +84,6 @@ export default class StoryEngine {
 
   // Play an AI moment — stream from Claude API with fallback
   async playAIMoment(segment) {
-    if (!this.apiKey) {
-      this.playFallback(segment);
-      return;
-    }
 
     try {
       const result = await this.streamHandler.stream({
