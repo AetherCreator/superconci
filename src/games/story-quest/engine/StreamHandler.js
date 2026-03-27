@@ -7,10 +7,9 @@ const API_URL = '/api/claude'; // Proxied through Vercel Edge function
 const DEFAULT_CHOICES = ['Continue the adventure', 'Try something different'];
 
 export default class StreamHandler {
-  constructor({ heroData, worldId, apiKey }) {
+  constructor({ heroData, worldId }) {
     this.heroData = heroData;
     this.worldId = worldId;
-    this.apiKey = apiKey;
   }
 
   async stream({ prompt, context, history, freeTextInput, isWrapUp, onTextChunk }) {
