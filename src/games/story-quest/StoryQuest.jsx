@@ -24,8 +24,7 @@ const SCREENS = {
   PARENT_VIEW: 'parent_view',
 };
 
-// API key would come from environment/config in production
-const API_KEY = typeof import.meta !== 'undefined' && import.meta.env?.VITE_ANTHROPIC_API_KEY || '';
+// API calls go through /api/claude proxy — no client-side key needed
 
 function StoryQuest({ profile, onExit }) {
   const profileId = profile?.id || 'default';
@@ -200,7 +199,7 @@ function StoryQuest({ profile, onExit }) {
     return (
       <HeroCreation
         profileId={profileId}
-        apiKey={API_KEY}
+        
         onComplete={handleHeroComplete}
       />
     );
