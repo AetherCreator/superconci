@@ -9,9 +9,9 @@ import { HAIR_COLORS, HAIR_STYLES, SKIN_TONES, EYE_COLORS, DEFAULTS } from './av
 
 const STEPS = { CAMERA_PROMPT: 0, CAMERA: 1, ANALYZING: 2, APPROVAL: 3, NAME: 4 };
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
+const API_URL = '/api/claude'; // Proxied through Vercel serverless function
 
-export default function HeroCreation({ profileId, apiKey, onComplete }) {
+export default function HeroCreation({ profileId, onComplete }) {
   const [step, setStep] = useState(STEPS.CAMERA_PROMPT);
   const [photoBase64, setPhotoBase64] = useState(null);
   const [description, setDescription] = useState('');
@@ -98,9 +98,6 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
         },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
@@ -147,9 +144,6 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
         },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
