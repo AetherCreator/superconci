@@ -1,18 +1,18 @@
 /**
  * HeroCreation.jsx — Camera capture → Vision API → Character description → Save hero
- * 4-step wizard: Camera → Analysis → Approval → Name
+ * Fixed for iOS Safari: camera starts on explicit user tap, not on mount
  */
 
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { createHero } from '../db/storyDB.js';
 import { HAIR_COLORS, HAIR_STYLES, SKIN_TONES, EYE_COLORS, DEFAULTS } from './avatarPalette.js';
 
-const STEPS = { CAMERA: 0, ANALYZING: 1, APPROVAL: 2, NAME: 3 };
+const STEPS = { CAMERA_PROMPT: 0, CAMERA: 1, ANALYZING: 2, APPROVAL: 3, NAME: 4 };
 
 const API_URL = 'https://api.anthropic.com/v1/messages';
 
 export default function HeroCreation({ profileId, apiKey, onComplete }) {
-  const [step, setStep] = useState(STEPS.CAMERA);
+  const [step, setStep] = useState(STEPS.CAMERA_PROMPT);
   const [photoBase64, setPhotoBase64] = useState(null);
   const [description, setDescription] = useState('');
   const [avatarProps, setAvatarProps] = useState(null);
@@ -25,9 +25,13 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
   const streamRef = useRef(null);
 
   // ─── Camera ──────────────────────────────────────────────────────
+  // iOS FIX: Camera ONLY starts when user explicitly taps the button.
+  // Never auto-start in useEffect — iOS treats getUserMedia outside a
+  // user gesture as a permission violation and reloads the page.
 
   const startCamera = useCallback(async () => {
     setError(null);
+    setStep(STEPS.CAMERA);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 640 } },
@@ -39,6 +43,7 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
       }
     } catch (err) {
       setError('camera');
+      setStep(STEPS.CAMERA_PROMPT);
     }
   }, []);
 
@@ -50,16 +55,7 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
     setCameraReady(false);
   }, []);
 
-  useEffect(() => {
-    if (step === STEPS.CAMERA && !photoBase64) {
-      startCamera();
-    }
-    return () => {
-      if (step !== STEPS.CAMERA) stopCamera();
-    };
-  }, [step, photoBase64, startCamera, stopCamera]);
-
-  // Cleanup on unmount
+  // Cleanup on unmount only
   useEffect(() => {
     return () => stopCamera();
   }, [stopCamera]);
@@ -69,7 +65,6 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
 
-    // Resize to max 512px on longest edge
     const vw = video.videoWidth;
     const vh = video.videoHeight;
     const maxDim = 512;
@@ -89,10 +84,10 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
   const retakePhoto = useCallback(() => {
     setPhotoBase64(null);
     setError(null);
-    setStep(STEPS.CAMERA);
+    setStep(STEPS.CAMERA_PROMPT);
   }, []);
 
-  // ─── Vision API Call 1: Description ──────────────────────────────
+  // ─── Vision API ──────────────────────────────────────────────────
 
   const analyzePhoto = useCallback(async () => {
     setStep(STEPS.ANALYZING);
@@ -131,23 +126,20 @@ export default function HeroCreation({ profileId, apiKey, onComplete }) {
       const data = await response.json();
       const desc = data.content[0].text;
 
-      // IMMEDIATELY clear photo from state — privacy
-      setPhotoBase64(null);
+      setPhotoBase64(null); // Clear immediately — privacy
 
       setDescription(desc);
-
-      // Run parse call
       const props = await parseDescription(desc);
       setAvatarProps(props);
       setStep(STEPS.APPROVAL);
     } catch (err) {
-      setPhotoBase64(null); // Still clear photo on error
+      setPhotoBase64(null);
       setError('api');
-      setStep(STEPS.CAMERA);
+      setStep(STEPS.CAMERA_PROMPT);
     }
   }, [photoBase64, apiKey]);
 
-  // ─── API Call 2: Parse description to structured traits ──────────
+  // ─── Parse description ───────────────────────────────────────────
 
   async function parseDescription(desc, retryCount = 0) {
     try {
@@ -181,7 +173,6 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
       const text = data.content[0].text.trim();
       const parsed = JSON.parse(text);
 
-      // Validate against palette enums
       return {
         hairColor: (parsed.hairColor in HAIR_COLORS) ? parsed.hairColor : DEFAULTS.hairColor,
         hairStyle: HAIR_STYLES.includes(parsed.hairStyle) ? parsed.hairStyle : DEFAULTS.hairStyle,
@@ -189,10 +180,7 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
         eyeColor: (parsed.eyeColor in EYE_COLORS) ? parsed.eyeColor : DEFAULTS.eyeColor,
       };
     } catch (err) {
-      if (retryCount < 1) {
-        return parseDescription(desc, retryCount + 1);
-      }
-      // Second failure — use defaults, don't block the flow
+      if (retryCount < 1) return parseDescription(desc, retryCount + 1);
       return { ...DEFAULTS };
     }
   }
@@ -218,42 +206,49 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
     <div style={styles.container}>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
 
-      {/* Step 1: Camera */}
-      {step === STEPS.CAMERA && !photoBase64 && (
+      {/* Step 0: Camera prompt — iOS FIX: user must tap to start camera */}
+      {step === STEPS.CAMERA_PROMPT && (
         <div style={styles.step}>
           <h2 style={styles.title}>Take your hero photo!</h2>
           {error === 'camera' && (
             <div style={styles.errorBox}>
-              <p style={styles.errorText}>
-                Story Quest needs to see you to make you the hero!
-              </p>
+              <p style={styles.errorText}>Story Quest needs to see you to make you the hero!</p>
               <p style={styles.errorHint}>Ask a grown-up to help turn on the camera.</p>
             </div>
           )}
           {error === 'api' && (
             <div style={styles.errorBox}>
-              <p style={styles.errorText}>
-                The storyteller is resting. Try again in a moment.
-              </p>
+              <p style={styles.errorText}>The storyteller is resting. Try again in a moment.</p>
             </div>
           )}
-          {!error && (
-            <>
-              <div style={styles.viewfinder}>
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  playsInline
-                  muted
-                  style={styles.video}
-                />
-              </div>
-              {cameraReady && (
-                <button onClick={capturePhoto} style={styles.shutterButton}>
-                  <div style={styles.shutterInner} />
-                </button>
-              )}
-            </>
+          <div style={styles.cameraPromptIcon}>📸</div>
+          <p style={styles.promptText}>Tap the button to open your camera</p>
+          <button onClick={startCamera} style={styles.primaryButton}>
+            Open Camera
+          </button>
+        </div>
+      )}
+
+      {/* Step 1: Live camera */}
+      {step === STEPS.CAMERA && !photoBase64 && (
+        <div style={styles.step}>
+          <h2 style={styles.title}>Smile, hero!</h2>
+          <div style={styles.viewfinder}>
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted
+              style={styles.video}
+            />
+          </div>
+          {cameraReady && (
+            <button onClick={capturePhoto} style={styles.shutterButton}>
+              <div style={styles.shutterInner} />
+            </button>
+          )}
+          {!cameraReady && (
+            <p style={styles.loadingText}>Camera loading...</p>
           )}
         </div>
       )}
@@ -263,19 +258,11 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
         <div style={styles.step}>
           <h2 style={styles.title}>Looking good, hero!</h2>
           <div style={styles.photoPreview}>
-            <img
-              src={`data:image/jpeg;base64,${photoBase64}`}
-              alt="Your hero photo"
-              style={styles.previewImage}
-            />
+            <img src={`data:image/jpeg;base64,${photoBase64}`} alt="Your hero" style={styles.previewImage} />
           </div>
           <div style={styles.buttonRow}>
-            <button onClick={analyzePhoto} style={styles.primaryButton}>
-              Use this photo
-            </button>
-            <button onClick={retakePhoto} style={styles.secondaryButton}>
-              Try again
-            </button>
+            <button onClick={analyzePhoto} style={styles.primaryButton}>Use this photo</button>
+            <button onClick={retakePhoto} style={styles.secondaryButton}>Try again</button>
           </div>
         </div>
       )}
@@ -298,17 +285,12 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
           <div style={styles.descriptionPanel}>
             <p style={styles.descriptionText}>{description}</p>
           </div>
-          {/* Avatar placeholder — Clue 4 will render actual SVG here */}
           <div style={styles.avatarPlaceholder}>
             <span style={styles.avatarEmoji}>🦸</span>
           </div>
           <div style={styles.buttonRow}>
-            <button onClick={() => setStep(STEPS.NAME)} style={styles.primaryButton}>
-              That's me!
-            </button>
-            <button onClick={retakePhoto} style={styles.secondaryButton}>
-              Try again
-            </button>
+            <button onClick={() => setStep(STEPS.NAME)} style={styles.primaryButton}>That's me!</button>
+            <button onClick={retakePhoto} style={styles.secondaryButton}>Try again</button>
           </div>
         </div>
       )}
@@ -324,7 +306,6 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
             placeholder="Your hero's name"
             style={styles.nameInput}
             maxLength={20}
-            autoFocus
           />
           <button onClick={saveHero} style={styles.primaryButton}>
             Start my adventure!
@@ -365,6 +346,17 @@ const styles = {
     margin: 0,
     lineHeight: 1.5,
   },
+  cameraPromptIcon: {
+    fontSize: '72px',
+    lineHeight: 1,
+  },
+  promptText: {
+    fontSize: '11px',
+    color: '#aaa',
+    textAlign: 'center',
+    margin: 0,
+    lineHeight: 1.6,
+  },
   viewfinder: {
     width: '280px',
     height: '280px',
@@ -373,11 +365,7 @@ const styles = {
     border: '4px solid #ffd700',
     boxShadow: '0 0 20px rgba(255,215,0,0.3)',
   },
-  video: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
+  video: { width: '100%', height: '100%', objectFit: 'cover' },
   shutterButton: {
     width: '72px',
     height: '72px',
@@ -391,12 +379,7 @@ const styles = {
     padding: 0,
     WebkitTapHighlightColor: 'transparent',
   },
-  shutterInner: {
-    width: '56px',
-    height: '56px',
-    borderRadius: '50%',
-    background: '#ffd700',
-  },
+  shutterInner: { width: '56px', height: '56px', borderRadius: '50%', background: '#ffd700' },
   photoPreview: {
     width: '280px',
     height: '280px',
@@ -404,18 +387,8 @@ const styles = {
     overflow: 'hidden',
     border: '4px solid #ffd700',
   },
-  previewImage: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-  buttonRow: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    width: '100%',
-    alignItems: 'center',
-  },
+  previewImage: { width: '100%', height: '100%', objectFit: 'cover' },
+  buttonRow: { display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', alignItems: 'center' },
   primaryButton: {
     minWidth: '220px',
     minHeight: '52px',
@@ -469,9 +442,7 @@ const styles = {
     justifyContent: 'center',
     border: '3px solid rgba(255,215,0,0.3)',
   },
-  avatarEmoji: {
-    fontSize: '48px',
-  },
+  avatarEmoji: { fontSize: '48px' },
   nameInput: {
     width: '100%',
     maxWidth: '280px',
@@ -490,9 +461,6 @@ const styles = {
     height: '200px',
     borderRadius: '50%',
     background: 'rgba(255,215,0,0.1)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     position: 'relative',
     overflow: 'hidden',
   },
@@ -502,12 +470,7 @@ const styles = {
     background: 'linear-gradient(45deg, transparent 30%, rgba(255,215,0,0.2) 50%, transparent 70%)',
     animation: 'shimmer 1.5s infinite',
   },
-  loadingText: {
-    fontSize: '11px',
-    color: '#aaa',
-    fontFamily: "'Press Start 2P', monospace",
-    margin: 0,
-  },
+  loadingText: { fontSize: '11px', color: '#aaa', fontFamily: "'Press Start 2P', monospace", margin: 0 },
   errorBox: {
     background: 'rgba(255,100,100,0.1)',
     border: '2px solid rgba(255,100,100,0.3)',
@@ -516,15 +479,6 @@ const styles = {
     textAlign: 'center',
     width: '100%',
   },
-  errorText: {
-    fontSize: '12px',
-    lineHeight: 1.6,
-    color: '#ffaaaa',
-    margin: '0 0 8px 0',
-  },
-  errorHint: {
-    fontSize: '10px',
-    color: '#999',
-    margin: 0,
-  },
+  errorText: { fontSize: '12px', lineHeight: 1.6, color: '#ffaaaa', margin: '0 0 8px 0' },
+  errorHint: { fontSize: '10px', color: '#999', margin: 0 },
 };
