@@ -6,7 +6,7 @@
 
 import { injectHero } from '../db/packLoader.js';
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
+const API_URL = '/api/claude';
 
 // Retry prompts, progressively stricter
 const RETRY_ADDENDUMS = [
@@ -31,9 +31,7 @@ export async function checkSafety(segmentText, apiKey) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
+
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
