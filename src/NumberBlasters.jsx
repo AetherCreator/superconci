@@ -425,7 +425,7 @@ function HUD({ score, streak, timeLeft, combo, lives }) {
 
 // ─── SCREENS ────────────────────────────────────────────────────────
 
-function TitleScreen({ onStart, soundOn, setSoundOn }) {
+function TitleScreen({ onStart, onExit, soundOn, setSoundOn }) {
   const [selected, setSelected] = useState("easy");
   return (
     <div style={{
@@ -500,11 +500,25 @@ function TitleScreen({ onStart, soundOn, setSoundOn }) {
       >
         LAUNCH!
       </button>
+
+      {onExit && (
+        <button
+          onClick={() => { audio.stopMusic(); onExit(); }}
+          style={{
+            fontFamily: "'Press Start 2P', monospace", fontSize: "9px",
+            padding: "10px 20px", borderRadius: "8px", marginTop: "16px",
+            border: "2px solid #666699", background: "#66669922", color: "#666699",
+            cursor: "pointer", WebkitTapHighlightColor: "transparent",
+          }}
+        >
+          ← GALAXY
+        </button>
+      )}
     </div>
   );
 }
 
-function ResultsScreen({ score, correct, total, lives, onRestart, onMenu, soundOn }) {
+function ResultsScreen({ score, correct, total, lives, onRestart, onMenu, onExit, soundOn }) {
   const survived = lives > 0;
   const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
 
@@ -577,6 +591,19 @@ function ResultsScreen({ score, correct, total, lives, onRestart, onMenu, soundO
         >
           MENU
         </button>
+        {onExit && (
+          <button
+            onClick={onExit}
+            style={{
+              fontFamily: "'Press Start 2P', monospace", fontSize: "11px",
+              padding: "14px 20px", borderRadius: "10px",
+              border: "2px solid #666699", background: "#66669922", color: "#666699",
+              cursor: "pointer", WebkitTapHighlightColor: "transparent",
+            }}
+          >
+            ← GALAXY
+          </button>
+        )}
       </div>
     </div>
   );
@@ -584,7 +611,7 @@ function ResultsScreen({ score, correct, total, lives, onRestart, onMenu, soundO
 
 // ─── MAIN GAME ──────────────────────────────────────────────────────
 
-export default function NumberBlasters() {
+export default function NumberBlasters({ onExit }) {
   const [screen, setScreen] = useState("title");
   const [difficulty, setDifficulty] = useState("easy");
   const [problem, setProblem] = useState(null);
@@ -751,7 +778,7 @@ export default function NumberBlasters() {
       <Starfield />
       {flash && <ScreenFlash color={flash} />}
 
-      {screen === "title" && <TitleScreen onStart={startGame} soundOn={soundOn} setSoundOn={setSoundOn} />}
+      {screen === "title" && <TitleScreen onStart={startGame} onExit={onExit} soundOn={soundOn} setSoundOn={setSoundOn} />}
 
       {screen === "game" && problem && (
         <>
@@ -816,6 +843,7 @@ export default function NumberBlasters() {
           score={score} correct={correct} total={total} lives={lives}
           onRestart={() => startGame(difficulty)}
           onMenu={() => { audio.stopMusic(); setScreen("title"); }}
+          onExit={onExit ? () => { audio.stopMusic(); onExit(); } : null}
           soundOn={soundOn}
         />
       )}
