@@ -91,6 +91,9 @@ export default function StoryPlayer({ storyEngine, hero, worldId, onExit, onStor
       setLoading(false);
       clearTimeout(loadingTimerRef.current);
       console.error('StoryEngine error:', error);
+      setStoryText('The story magic is resting... tap to try again.');
+      setChoices(['Try again']);
+      setAllowFreeText(false);
     };
   }, [storyEngine]);
 
