@@ -3,14 +3,13 @@
  * Streams story text, detects ---CHOICES--- delimiter, parses JSON choices.
  */
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
+const API_URL = '/api/claude';
 const DEFAULT_CHOICES = ['Continue the adventure', 'Try something different'];
 
 export default class StreamHandler {
-  constructor({ heroData, worldId, apiKey }) {
+  constructor({ heroData, worldId }) {
     this.heroData = heroData;
     this.worldId = worldId;
-    this.apiKey = apiKey;
   }
 
   async stream({ prompt, context, history, freeTextInput, isWrapUp, onTextChunk }) {
@@ -21,9 +20,6 @@ export default class StreamHandler {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': this.apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',

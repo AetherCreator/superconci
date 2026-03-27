@@ -24,9 +24,6 @@ const SCREENS = {
   PARENT_VIEW: 'parent_view',
 };
 
-// API key would come from environment/config in production
-const API_KEY = typeof import.meta !== 'undefined' && import.meta.env?.VITE_ANTHROPIC_API_KEY || '';
-
 function StoryQuest({ profile, onExit }) {
   const profileId = profile?.id || 'default';
   const [screen, setScreen] = useState(SCREENS.LOADING);
@@ -108,7 +105,6 @@ function StoryQuest({ profile, onExit }) {
           storyId,
           packId: resumeData.story.pack_id,
           heroData,
-          apiKey: API_KEY,
           onSegment: () => {},
           onChoices: () => {},
           onEnding: () => {},
@@ -133,7 +129,6 @@ function StoryQuest({ profile, onExit }) {
       storyId: sId,
       packId,
       heroData,
-      apiKey: API_KEY,
       onSegment: () => {},
       onChoices: () => {},
       onEnding: () => {},
@@ -200,7 +195,6 @@ function StoryQuest({ profile, onExit }) {
     return (
       <HeroCreation
         profileId={profileId}
-        apiKey={API_KEY}
         onComplete={handleHeroComplete}
       />
     );
