@@ -1,0 +1,147 @@
+{
+  "id": "road-ever-on-pack-1",
+  "world": "road-ever-on",
+  "title": "The Green Door",
+  "readingLevel": 3,
+  "targetAge": [4, 8],
+  "author": "tyler+claude",
+  "version": 1,
+  "segments": [
+    {
+      "id": 1,
+      "type": "procedural",
+      "text": "[NAME] was walking along a winding country lane when something caught [POSSESSIVE] eye — a perfectly round green door set into the side of a grassy hill. It had a shiny brass knob right in the middle and a little mail slot at the bottom. A welcome mat read 'COME IN' in cheerful letters. Above the door, carved into the stone, were the words: 'The Road Goes Ever On.'",
+      "choices": ["Open the green door", "Peek through the mail slot first"],
+      "nextMap": { "0": 2, "1": 3 }
+    },
+    {
+      "id": 2,
+      "type": "procedural",
+      "text": "The door swung open with a friendly creak, and [NAME] stepped inside. It was the coziest home imaginable! A round hallway led to a round kitchen with a crackling fireplace, a pantry full of jams and fresh bread, and a rocking chair that looked like it hadn't been sat in for a while. Everything was small and perfectly made — just the right size for [NAME]. On the kitchen table sat a folded map and a note.",
+      "choices": ["Read the note right away", "Explore the cozy kitchen first"],
+      "nextMap": { "0": 4, "1": 5 }
+    },
+    {
+      "id": 3,
+      "type": "procedural",
+      "text": "[NAME] knelt down and peeked through the mail slot. Inside, [PRONOUN] could see a warm glow, a checkered floor, and the edge of a cozy kitchen table. Something smelled wonderful — like fresh bread and honey. A little breeze came through the slot carrying the scent, and [NAME]'s tummy rumbled. Whatever was inside, it felt safe and inviting. There was only one thing to do.",
+      "choices": ["Open the door and go inside"],
+      "nextMap": { "0": 2 }
+    },
+    {
+      "id": 4,
+      "type": "ai_moment",
+      "context": "Hero found a map and a note inside the cozy hill-home. First free text moment. The note is from the home's owner who has gone on a journey. The map shows three possible routes.",
+      "prompt": "The hero found a handwritten note and a hand-drawn map on a kitchen table in a cozy hobbit-like home built into a hill. Write the note in a warm, slightly old-fashioned voice — the owner has gone on a long walk and invites whoever finds this note to follow the road. The map shows three routes. Let the hero decide what to do.",
+      "allowFreeText": true,
+      "fallback": {
+        "text": "The note was written in looping, cheerful handwriting: 'Dear Traveler, I have gone on a walk and I'm not quite sure when I'll be back. The road, you see, goes ever on, and I simply had to follow it. Please help yourself to bread and jam — the strawberry is particularly good. If you'd like an adventure of your own, I've left my map. Three roads lead from this hill: the River Road follows the singing water, the High Hills climb to where eagles fly, and the Old Forest holds secrets older than the hills themselves. Whichever road you choose, enjoy every step. Yours, Bramble Took.' [NAME] unfolded the map and traced the three paths with [POSSESSIVE] finger.",
+        "choices": ["Follow the River Road", "Climb the High Hills", "Explore the Old Forest"],
+        "nextMap": { "0": 6, "1": 7, "2": 8 }
+      },
+      "branchHints": {
+        "river": 6,
+        "water": 6,
+        "hill": 7,
+        "climb": 7,
+        "eagle": 7,
+        "forest": 8,
+        "tree": 8,
+        "secret": 8
+      }
+    },
+    {
+      "id": 5,
+      "type": "procedural",
+      "text": "The kitchen was a treasure trove of cozy delights. [NAME] found a jar of golden honey shaped like a bear, a basket of scones still warm from the oven (how?), and six different kinds of jam arranged by color from pale yellow to deep purple. There was also a teapot that kept itself warm and two mugs — one for tea and a smaller one labeled 'Second Breakfast Hot Cocoa.' On the windowsill grew herbs in little pots, each one labeled in neat handwriting. Then [NAME] noticed the map and note on the table.",
+      "choices": ["Have a scone with jam, then read the note", "Read the note right away"],
+      "nextMap": { "0": 4, "1": 4 }
+    },
+    {
+      "id": 6,
+      "type": "procedural",
+      "text": "[NAME] followed the River Road, which wound alongside a cheerful stream that babbled over smooth stones. Willow trees dipped their branches into the water like fingers testing the temperature. Little fish jumped and splashed, and a blue heron stood on one leg watching [NAME] pass with a dignified nod. The road was soft earth, easy on the feet, and wildflowers grew on both sides — daisies and buttercups and tiny purple ones [NAME] had never seen before.",
+      "choices": ["Wade into the stream to cool off", "Follow the path to where the river bends"],
+      "nextMap": { "0": 9, "1": 9 }
+    },
+    {
+      "id": 7,
+      "type": "procedural",
+      "text": "The High Hills path climbed gently at first, then more steeply, winding between boulders covered in soft green moss. [NAME]'s legs worked hard but the view kept getting better with every step. Soon [PRONOUN] could see the whole valley spread out below — the green door in its hill, the river glinting like a silver ribbon, and the dark canopy of the Old Forest stretching to the horizon. A cool breeze ruffled [NAME]'s hair, carrying the scent of wild thyme.",
+      "choices": ["Keep climbing to the very top", "Rest on a flat rock and enjoy the view"],
+      "nextMap": { "0": 10, "1": 10 }
+    },
+    {
+      "id": 8,
+      "type": "procedural",
+      "text": "The Old Forest welcomed [NAME] with a cathedral of ancient trees. Their trunks were wider than houses, their branches intertwined far above like a living ceiling. Sunlight filtered through the leaves in golden shafts, and the air smelled of earth and pine and something sweet like cinnamon. The path was carpeted with soft brown needles, and [NAME]'s footsteps made no sound at all. In the distance, a woodpecker tapped out a rhythm like a tiny drummer.",
+      "choices": ["Follow the sound of the woodpecker", "Take the path toward the biggest tree"],
+      "nextMap": { "0": 11, "1": 11 }
+    },
+    {
+      "id": 9,
+      "type": "ai_moment",
+      "context": "Hero is on the River Road and encounters a friendly wandering storyteller sitting by the stream. Mid-story meeting. The storyteller knows about the home's owner and shares a piece of wisdom.",
+      "prompt": "The hero is walking along a beautiful river road and meets a friendly wandering storyteller sitting by the stream, eating an apple. Write a warm conversation where the storyteller recognizes the map the hero is carrying and shares a clue about finding the Ancient Tree at the end of the road. The storyteller should feel wise but playful, like a favorite grandparent.",
+      "allowFreeText": false,
+      "fallback": {
+        "text": "Around a bend in the river, [NAME] found a person sitting on a mossy rock, eating a green apple and humming a tune. They wore a patched cloak the color of autumn leaves and had the kindest eyes [NAME] had ever seen. 'Well now!' they said with a smile. 'Is that Bramble's map you're carrying? I thought so! I'm a storyteller — I walk every road in these lands collecting stories.' They leaned closer. 'If you're looking for the Ancient Tree, follow the road until you hear it singing. Yes, the tree sings! Only those who are truly kind can hear it.'",
+        "choices": ["Ask the storyteller for another story", "Thank them and continue down the road"],
+        "nextMap": { "0": 12, "1": 12 }
+      },
+      "branchHints": {
+        "story": 12,
+        "thank": 12,
+        "continue": 12,
+        "road": 12
+      }
+    },
+    {
+      "id": 10,
+      "type": "procedural",
+      "text": "At the very top of the High Hills, [NAME] discovered something wonderful. A circle of flat stones had been arranged like seats around a fire pit, and in the center grew a single small tree — no taller than [NAME] — with silver leaves that chimed softly in the wind. This was a listening place, [NAME] could feel it. The kind of place where you sit quietly and the world tells you things. From up here, [NAME] could see a path leading down the far side of the hills toward an enormous ancient tree in the distance.",
+      "choices": ["Sit and listen for a moment", "Head toward the Ancient Tree"],
+      "nextMap": { "0": 12, "1": 12 }
+    },
+    {
+      "id": 11,
+      "type": "procedural",
+      "text": "The woodpecker led [NAME] deeper into the forest, hopping from trunk to trunk like a tiny guide. The trees grew older and taller, their bark covered in intricate patterns that almost looked like writing. [NAME] pressed [POSSESSIVE] hand against one massive trunk and felt a gentle vibration — like the tree was humming. Through a gap in the canopy, [NAME] spotted it: the Ancient Tree, bigger than all the others, its branches reaching so high they seemed to touch the clouds.",
+      "choices": ["Walk right up to the Ancient Tree", "Circle around it first to find the best approach"],
+      "nextMap": { "0": 12, "1": 12 }
+    },
+    {
+      "id": 12,
+      "type": "ai_moment",
+      "context": "Hero has reached the Ancient Tree — the climax destination. The tree is enormous and magical. The hero discovers that Bramble Took left something in the tree's hollow, and the tree itself seems alive and welcoming.",
+      "prompt": "The hero reaches the Ancient Tree, the largest tree in the world. Write a magical scene where the tree seems to welcome the hero — maybe its branches lower, or its leaves shimmer. In a hollow in the trunk, the hero finds something Bramble Took left behind. Make it meaningful and connected to the theme of journeys and coming home.",
+      "allowFreeText": false,
+      "fallback": {
+        "text": "The Ancient Tree was the most magnificent thing [NAME] had ever seen. Its trunk was as wide as Bramble's entire hill-home, and its branches spread across the sky like a second forest growing in the air. As [NAME] approached, the lowest branch dipped gently, as if the tree was bowing. Leaves drifted down and arranged themselves into a path leading to a hollow in the trunk. Inside the hollow, sitting on a bed of soft moss, was a small wooden box. [NAME] opened it carefully. Inside was a compass with the words 'Every road leads home' engraved on the back, and another note from Bramble: 'You found it! Now you know the secret of the road — it always brings you back to where you belong.'",
+        "choices": ["Keep the compass and head home", "Leave a thank-you note for Bramble"],
+        "nextMap": { "0": 13, "1": 13 }
+      },
+      "branchHints": {
+        "compass": 13,
+        "home": 13,
+        "keep": 13,
+        "thank": 13,
+        "note": 13
+      }
+    },
+    {
+      "id": 13,
+      "type": "procedural",
+      "text": "With the compass in [POSSESSIVE] pocket and the Ancient Tree's blessing at [POSSESSIVE] back, [NAME] began the walk home. The road that had seemed long before now felt just right — not too far, not too short. The sunset painted the sky in shades of orange and pink, and the evening air smelled like honeysuckle. Birds sang their going-to-bed songs in the hedgerows. Before long, the familiar round green door appeared over the next hill.",
+      "choices": ["Run home — it's almost dinnertime!", "Walk slowly and enjoy every last step"],
+      "nextMap": { "0": 14, "1": 14 }
+    },
+    {
+      "id": 14,
+      "type": "procedural",
+      "text": "[NAME] opened the green door and stepped back inside the cozy hill-home. The fire was still crackling, the kettle was still warm, and everything was exactly as [PRONOUN] had left it — except for one thing. On the kitchen table, next to where the map had been, sat a fresh plate of scones and a new note: 'Welcome home, dear traveler. I knew you'd find your way. The road goes ever on, but the best part is always coming back. Until our next adventure — Bramble.' [NAME] smiled, hung up the compass on a little hook by the door, and sat down to the best scone [PRONOUN] had ever tasted.",
+      "isEnding": true,
+      "endingType": "cozy"
+    }
+  ]
+}
