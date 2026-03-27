@@ -1,0 +1,144 @@
+{
+  "id": "star-sector-pack-1",
+  "world": "star-sector",
+  "title": "The Star Map",
+  "readingLevel": 3,
+  "targetAge": [4, 8],
+  "author": "tyler+claude",
+  "version": 1,
+  "segments": [
+    {
+      "id": 1,
+      "type": "procedural",
+      "text": "[NAME] was aboard the Starship Curiosity when the communication screen flickered to life. A swirl of glowing dots appeared — not random static, but a pattern, a map! Three star systems blinked on the display, each one marked with a piece of a symbol. The ship's computer announced in its calm voice: 'Junior Captain [NAME], an unknown signal has been detected. It appears to be a message — but it's been split into three parts, hidden on three uncharted planets.'",
+      "choices": ["Accept the mission!", "Ask the computer for more information"],
+      "nextMap": { "0": 2, "1": 3 }
+    },
+    {
+      "id": 2,
+      "type": "procedural",
+      "text": "'Mission accepted,' said [NAME], and the ship hummed with excitement — or maybe that was [NAME]'s own heart beating faster. The star map showed three planets, each one completely different. Planet Glacius gleamed white and blue, covered in ice. Planet Verdana glowed green, wrapped in thick jungle. And Planet Prismara shimmered with every color of the rainbow, its surface made entirely of crystal. Each planet held one piece of the signal.",
+      "choices": ["Set course for Planet Glacius — the ice planet", "Set course for Planet Verdana — the jungle planet", "Set course for Planet Prismara — the crystal planet"],
+      "nextMap": { "0": 4, "1": 5, "2": 6 }
+    },
+    {
+      "id": 3,
+      "type": "procedural",
+      "text": "The computer displayed everything it knew. 'The signal originates from beyond known space. Its frequency matches no recorded civilization. The three signal fragments are located on planets in the Triad System — Glacius, Verdana, and Prismara. Each fragment appears to be a physical object, not just data. Someone placed them there deliberately.' The computer paused. 'Recommendation: this is a message meant to be found. Someone is trying to say hello.'",
+      "choices": ["This is amazing — let's go!", "Which planet should we visit first?"],
+      "nextMap": { "0": 2, "1": 2 }
+    },
+    {
+      "id": 4,
+      "type": "procedural",
+      "text": "Planet Glacius was breathtaking. [NAME] landed the Starship Curiosity on a plain of ice so clear [PRONOUN] could see fish swimming beneath it. Mountains of pale blue ice rose in every direction, and the sky was filled with dancing lights — an aurora in shades of green and purple. The temperature outside was freezing, but [NAME]'s space suit kept [PRONOUN] warm and cozy. The signal fragment was pulsing somewhere to the north, past a frozen waterfall.",
+      "choices": ["Walk toward the frozen waterfall", "Follow the aurora lights — they seem to point the way"],
+      "nextMap": { "0": 7, "1": 7 }
+    },
+    {
+      "id": 5,
+      "type": "procedural",
+      "text": "Planet Verdana was the greenest place [NAME] had ever seen. The jungle started right at the landing pad — enormous ferns, twisting vines, and trees so tall their tops disappeared into the clouds. Everything was alive with sound: chirping, buzzing, rustling. [NAME]'s scanner beeped steadily, pointing deeper into the jungle where the signal fragment waited. Tiny glowing insects drifted past like floating lanterns, lighting the path forward.",
+      "choices": ["Follow the glowing insects", "Use the scanner to find the shortest route"],
+      "nextMap": { "0": 8, "1": 8 }
+    },
+    {
+      "id": 6,
+      "type": "procedural",
+      "text": "Planet Prismara took [NAME]'s breath away. The entire surface was made of crystal — not sharp and jagged, but smooth and curved, like someone had sculpted a whole world from glass. Every step [NAME] took created a musical note, turning walking into a melody. The light from the nearby star passed through the crystal surface and split into rainbows that danced across everything. Somewhere in this rainbow world, a signal fragment was waiting.",
+      "choices": ["Follow the strongest rainbow — it must lead somewhere", "Listen for the signal fragment's hum"],
+      "nextMap": { "0": 9, "1": 9 }
+    },
+    {
+      "id": 7,
+      "type": "procedural",
+      "text": "Behind the frozen waterfall, [NAME] found a cave of solid ice. The walls were smooth as glass, and inside, the signal fragment floated in the air, suspended in a beam of aurora light. It was a triangular piece of metal, no bigger than [NAME]'s hand, covered in tiny symbols that glowed warmly. When [NAME] reached out and took it, the aurora above blazed brighter, as if celebrating. One piece found — two more to go.",
+      "choices": ["Head back to the ship and fly to the next planet", "Study the symbols on the fragment first"],
+      "nextMap": { "0": 10, "1": 10 }
+    },
+    {
+      "id": 8,
+      "type": "ai_moment",
+      "context": "Hero is in the jungle planet following glowing insects. Mid-story first contact — the hero meets a friendly alien creature. The alien is helpful and curious about the hero.",
+      "prompt": "The hero is exploring a lush alien jungle on Planet Verdana, following glowing insects. Write a scene where the hero encounters a friendly alien creature for the first time. The alien should be curious, gentle, and helpful. It communicates through colors or sounds rather than words. It knows where the signal fragment is and wants to help. Make the first contact feel magical and warm.",
+      "allowFreeText": false,
+      "fallback": {
+        "text": "The glowing insects led [NAME] to a clearing where something extraordinary was waiting. A creature about [NAME]'s height stood among the ferns, watching with large, gentle eyes the color of the sky after rain. Its body was covered in soft fur that changed color with its mood — currently a peaceful shade of blue. When it saw [NAME], it turned bright pink with curiosity and let out a melodic trill. [NAME] waved slowly, and the creature waved back with three delicate fingers. Then it gestured deeper into the jungle and its fur turned green — the color of 'follow me.' It knew where the signal fragment was!",
+        "choices": ["Follow the alien friend into the jungle", "Try to communicate by waving and smiling"],
+        "nextMap": { "0": 11, "1": 11 }
+      },
+      "branchHints": {
+        "follow": 11,
+        "friend": 11,
+        "communicate": 11,
+        "wave": 11,
+        "jungle": 11
+      }
+    },
+    {
+      "id": 9,
+      "type": "procedural",
+      "text": "The strongest rainbow led [NAME] to the heart of Planet Prismara — a towering crystal spire that rose from the ground like a lighthouse. At its base, set into a small alcove, was the signal fragment. This one was circular, covered in the same glowing symbols as the first, and it hummed a note that harmonized perfectly with the crystal world around it. When [NAME] picked it up, every crystal on the planet rang out in a chord so beautiful it made [NAME] close [POSSESSIVE] eyes and smile.",
+      "choices": ["Hold the fragment up to the light to see the symbols better", "Hurry back to the ship — the mission isn't done yet"],
+      "nextMap": { "0": 10, "1": 10 }
+    },
+    {
+      "id": 10,
+      "type": "ai_moment",
+      "context": "Hero is decoding the star map / examining the signal fragments. Free text moment. The hero has at least one fragment and is trying to understand what the symbols mean.",
+      "prompt": "The hero is aboard the Starship Curiosity, examining the signal fragments collected so far. The symbols on them seem to form a message when arranged correctly. Write a scene where the hero starts to decode the message and realizes it might be a greeting from a distant civilization. Let the hero decide what they think the message says.",
+      "allowFreeText": true,
+      "fallback": {
+        "text": "[NAME] spread the signal fragments across the ship's navigation table. The computer scanned them and projected the symbols into the air as holograms. 'The symbols appear to be a language,' the computer said. 'Based on pattern analysis, this is a message. The repeating symbol appears to mean...' The computer paused, processing. [NAME] looked at the patterns — circles, waves, and what looked like two figures reaching toward each other. 'I think it means hello,' [NAME] said quietly. The computer blinked. 'That is the most likely translation. Someone out there is saying hello.'",
+        "choices": ["We need to find all three pieces to send a hello back!", "Let's decode more of the message first"],
+        "nextMap": { "0": 12, "1": 12 }
+      },
+      "branchHints": {
+        "find": 12,
+        "hello": 12,
+        "decode": 12,
+        "message": 12,
+        "pieces": 12
+      }
+    },
+    {
+      "id": 11,
+      "type": "procedural",
+      "text": "The alien friend led [NAME] through the jungle to the most amazing tree on the entire planet — its trunk was hollow, and inside, like a pearl inside an oyster, floated the signal fragment. This one was square, glowing with symbols just like the others. The alien trilled happily and its fur turned gold — the color of 'gift.' It gently nudged [NAME] toward the fragment. When [NAME] took it, the alien chirped and did a little dance, its fur flickering through every color like fireworks.",
+      "choices": ["Dance with the alien friend to celebrate", "Give the alien a thank-you hug"],
+      "nextMap": { "0": 10, "1": 10 }
+    },
+    {
+      "id": 12,
+      "type": "procedural",
+      "text": "With all three signal fragments collected, [NAME] placed them together on the navigation table. They clicked into place like puzzle pieces, forming a perfect circle. The symbols blazed with light, and the ship's antenna began broadcasting on its own. The message was complete: a greeting, a welcome, an invitation to be friends across the stars. The reply came almost instantly — a warm pulse of light from somewhere beyond the Triad System, matching the exact same frequency. Someone had heard. Someone was saying hello back.",
+      "choices": ["Send a message of our own — tell them about us!", "Listen to their reply carefully"],
+      "nextMap": { "0": 13, "1": 13 }
+    },
+    {
+      "id": 13,
+      "type": "ai_moment",
+      "context": "Climax — the hero has assembled all three signal fragments and is communicating with a distant friendly alien civilization. The signal is a greeting and the hero gets to send a message back.",
+      "prompt": "The hero has assembled the complete signal and received a reply from a distant alien civilization. Write the climactic scene where the hero sends a message back. The hero gets to choose what to say to represent all of humanity (or at least, all of the Starship Curiosity). Make it hopeful, warm, and meaningful. A child saying hello to the universe.",
+      "allowFreeText": false,
+      "fallback": {
+        "text": "The ship's computer translated the incoming signal: 'We have waited a long time for someone to hear us. We are far away, but distance means nothing to friends.' [NAME] thought carefully about what to send back. What do you say to someone you've never met, who lives among stars you can't even see? [NAME] pressed the transmit button and spoke clearly: 'Hello! My name is [NAME], and I'm the junior captain of the Starship Curiosity. Thank you for your message. We're happy to meet you.' There was a pause. Then the ship filled with the most beautiful music [NAME] had ever heard — the aliens were singing, and the song sounded exactly like joy.",
+        "choices": ["Sing along with the alien music", "Record the song to share with everyone back home"],
+        "nextMap": { "0": 14, "1": 14 }
+      },
+      "branchHints": {
+        "sing": 14,
+        "record": 14,
+        "music": 14,
+        "share": 14
+      }
+    },
+    {
+      "id": 14,
+      "type": "procedural",
+      "text": "[NAME] set a course for home, but the journey felt different now. The stars outside the window weren't just points of light anymore — they were neighborhoods, places where someone might live, someone who might also be looking up at the sky and wondering if they were alone. They weren't. Nobody was. [NAME] had proved that today. The Starship Curiosity hummed contentedly as it sailed through the stars, carrying the most important message in history: that somewhere out there, someone had been waiting to say hello, and a brave young captain had answered.",
+      "isEnding": true,
+      "endingType": "triumph"
+    }
+  ]
+}

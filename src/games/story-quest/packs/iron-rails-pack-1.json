@@ -1,0 +1,155 @@
+{
+  "id": "iron-rails-pack-1",
+  "world": "iron-rails",
+  "title": "The Midnight Express",
+  "readingLevel": 3,
+  "targetAge": [4, 8],
+  "author": "tyler+claude",
+  "version": 1,
+  "segments": [
+    {
+      "id": 1,
+      "type": "procedural",
+      "text": "[NAME] stood on the platform of Ironhaven Station as the clock struck midnight. A magnificent steam train rumbled into view, its brass fittings gleaming under the gaslights. The words 'MIDNIGHT EXPRESS' were painted in golden letters along its side. A conductor in a tall hat leaned out and called, 'All aboard! We need an engineer — are you brave enough?'",
+      "choices": ["Climb aboard the train!", "Ask the conductor what happened to the old engineer"],
+      "nextMap": { "0": 2, "1": 3 }
+    },
+    {
+      "id": 2,
+      "type": "procedural",
+      "text": "[NAME] grabbed the brass railing and pulled [PRONOUN]self up into the train. The carriages were warm and cozy, with velvet seats and little lamps on every table. Passengers waved and smiled — they had been waiting for someone just like [NAME]. The conductor handed over a shiny engineer's cap and said, 'The engine room is at the front. The train is losing steam, and only Crystal Coal can save her.'",
+      "choices": ["Head straight to the engine room", "Talk to the passengers first"],
+      "nextMap": { "0": 4, "1": 5 }
+    },
+    {
+      "id": 3,
+      "type": "procedural",
+      "text": "The conductor knelt down to look [NAME] in the eye. 'Our engineer, old Greta Gearsworth, went searching for Crystal Coal in the mountains and never came back,' he explained. 'The Midnight Express runs on ordinary coal, but she's getting tired. Crystal Coal burns forever — one piece would keep her running for a hundred years.' He held out an engineer's cap. 'She left this for whoever was brave enough to finish what she started.'",
+      "choices": ["Take the cap and climb aboard", "Ask where the Crystal Coal can be found"],
+      "nextMap": { "0": 4, "1": 4 }
+    },
+    {
+      "id": 4,
+      "type": "procedural",
+      "text": "[NAME] pushed open the heavy iron door to the engine room. It was incredible! Copper pipes twisted across the ceiling like a maze, gauges with spinning needles covered every wall, and in the center sat the enormous furnace — the heart of the Midnight Express. A pressure gauge on the wall was dropping slowly. The train needed fuel, and soon. On a workbench, [NAME] found a map showing three routes to the Crystal Cavern.",
+      "choices": ["Take the mountain route through the peaks", "Take the bridge route across the Great Gorge", "Take the underground tunnel through the earth"],
+      "nextMap": { "0": 6, "1": 7, "2": 8 }
+    },
+    {
+      "id": 5,
+      "type": "ai_moment",
+      "context": "Hero just boarded the train and is talking to passengers. First free text moment. The passengers are friendly and have clues about the journey ahead.",
+      "prompt": "The hero has just boarded the Midnight Express and is talking to the passengers in a cozy train carriage. Write a vivid scene where two friendly passengers share different pieces of advice about the journey to find Crystal Coal. Then let the hero decide what to do next.",
+      "allowFreeText": true,
+      "fallback": {
+        "text": "[NAME] sat down next to a kind old woman knitting a silver scarf and a young boy reading a book about trains. 'The mountain route is beautiful but cold,' said the woman, her needles clicking. 'I always pack extra socks.' The boy looked up from his book. 'The tunnel is faster, but you'll need a good lantern. It's darker than midnight down there!' Both of them smiled at [NAME] like they knew [PRONOUN] was exactly the right person for this adventure.",
+        "choices": ["Head to the engine room now", "Ask if anyone has a lantern"],
+        "nextMap": { "0": 4, "1": 4 }
+      },
+      "branchHints": {
+        "engine": 4,
+        "lantern": 4,
+        "mountain": 4,
+        "tunnel": 4
+      }
+    },
+    {
+      "id": 6,
+      "type": "procedural",
+      "text": "The Midnight Express climbed higher and higher into the Ironpeak Mountains. Snow began to fall outside the windows, and the train's wheels sang a rhythmic song on the frozen tracks. [NAME] shoveled the last of the ordinary coal into the furnace, watching the pressure gauge nervously. Through the window, [PRONOUN] spotted something amazing — a cave mouth in the mountainside, glowing with a faint blue light. The Crystal Cavern!",
+      "choices": ["Stop the train and explore the cave", "Slow down and look for a safer entrance"],
+      "nextMap": { "0": 9, "1": 10 }
+    },
+    {
+      "id": 7,
+      "type": "procedural",
+      "text": "The Great Gorge stretched below like a canyon of clouds. The Midnight Express rolled onto the famous Iron Bridge — the longest railway bridge in the world, built by engineers long ago. [NAME] could see for miles in every direction. Halfway across, the train slowed. A signal flag was waving from a small platform on the bridge. An old woman stood there waving — it was Greta Gearsworth! 'I've been waiting!' she called. 'I found the Crystal Coal but I couldn't carry it back alone!'",
+      "choices": ["Stop the train and help Greta", "Call out and ask where the coal is"],
+      "nextMap": { "0": 11, "1": 11 }
+    },
+    {
+      "id": 8,
+      "type": "procedural",
+      "text": "The train plunged into the tunnel and the world went dark. [NAME] turned on the engine room's headlamp, and its golden beam cut through the shadows. The tunnel walls sparkled with minerals — iron, copper, and something else, something that glowed blue. The tracks curved deeper underground, and the air grew warm. Strange and beautiful crystals grew from the ceiling like upside-down trees, casting dancing blue light everywhere.",
+      "choices": ["Follow the blue crystals deeper", "Stop the train and collect some crystals"],
+      "nextMap": { "0": 12, "1": 13 }
+    },
+    {
+      "id": 9,
+      "type": "ai_moment",
+      "context": "Hero stopped the train at a mountain cave that's glowing blue. This is the mid-story encounter. The cave has Crystal Coal but also a puzzle to solve.",
+      "prompt": "The hero has stopped the Midnight Express at a glowing blue cave in the Ironpeak Mountains. Write a scene where the hero enters the cave and discovers that the Crystal Coal is protected by a clever engineering puzzle — maybe gears that need turning, or pipes that need connecting. Make it feel like a fun challenge, not scary.",
+      "allowFreeText": false,
+      "fallback": {
+        "text": "[NAME] stepped into the cave and gasped. The walls were covered in glowing blue crystals, and in the center of the cavern sat a magnificent machine — a gear puzzle! Three large bronze gears needed to be turned in the right order to open a glass case containing the Crystal Coal. [NAME] studied the gears carefully. Each one had symbols: a sun, a moon, and a star. A sign read: 'First light, then dark, then dreams.'",
+        "choices": ["Turn the sun gear first", "Turn the star gear first", "Look for more clues on the walls"],
+        "nextMap": { "0": 14, "1": 14, "2": 14 }
+      },
+      "branchHints": {
+        "sun": 14,
+        "gear": 14,
+        "solve": 14,
+        "look": 14
+      }
+    },
+    {
+      "id": 10,
+      "type": "procedural",
+      "text": "[NAME] eased the throttle back and the Midnight Express slowed to a crawl along the mountain ledge. Smart thinking! Around the next bend, [PRONOUN] found a proper platform carved into the rock — an old mining stop that other engineers must have used before. A wooden sign read 'Crystal Cavern — 200 steps.' A lantern hung on a hook, still full of oil, as if someone had left it just for [NAME].",
+      "choices": ["Light the lantern and follow the path", "Bring tools from the engine room too"],
+      "nextMap": { "0": 14, "1": 14 }
+    },
+    {
+      "id": 11,
+      "type": "procedural",
+      "text": "Greta Gearsworth climbed aboard with a grin that crinkled her whole face. She was small and strong, with goggles pushed up on her forehead and grease on her fingers. 'I found the biggest piece of Crystal Coal you've ever seen,' she said, 'but it's wedged in a crack at the bottom of the gorge. I need another pair of hands.' She pulled out a rope and a harness. 'Think you can be brave for just a little while longer?'",
+      "choices": ["Put on the harness and climb down with Greta", "Ask Greta if there's another way"],
+      "nextMap": { "0": 14, "1": 14 }
+    },
+    {
+      "id": 12,
+      "type": "procedural",
+      "text": "The tunnel opened into an enormous underground chamber — a natural cathedral of crystal and stone. The blue glow was everywhere now, warm and gentle. In the center, sitting on a pedestal of iron ore, was the Crystal Coal. It was the size of a melon, perfectly smooth, and pulsing with blue light like a heartbeat. [NAME] reached out [POSSESSIVE] hand. The crystal was warm to the touch, and it hummed softly, as if it was happy to finally be found.",
+      "choices": ["Carefully pick up the Crystal Coal", "Look around the chamber first"],
+      "nextMap": { "0": 15, "1": 15 }
+    },
+    {
+      "id": 13,
+      "type": "ai_moment",
+      "context": "Hero stopped in the crystal tunnel to collect glowing crystals. Climax moment. The crystals are beautiful but the hero needs to find the real Crystal Coal among them.",
+      "prompt": "The hero stopped the train in a crystal-filled underground tunnel. Write a scene where the hero discovers that most crystals are just pretty but one special crystal — the Crystal Coal — responds when the hero touches it. Make it magical and warm, like the crystal chose the hero.",
+      "allowFreeText": false,
+      "fallback": {
+        "text": "[NAME] picked up crystal after crystal, but each one was cold and ordinary — beautiful, but not the Crystal Coal. Then [PRONOUN] noticed one crystal tucked behind the others, smaller than the rest, glowing with a steady warm pulse. When [NAME] touched it, the crystal sang a single clear note, and the whole tunnel lit up brighter. The Crystal Coal had chosen its engineer.",
+        "choices": ["Take the Crystal Coal back to the train", "Thank the crystal tunnel before leaving"],
+        "nextMap": { "0": 15, "1": 15 }
+      },
+      "branchHints": {
+        "take": 15,
+        "thank": 15,
+        "crystal": 15
+      }
+    },
+    {
+      "id": 14,
+      "type": "procedural",
+      "text": "After all that effort, [NAME] finally held the Crystal Coal in [POSSESSIVE] hands. It was beautiful — heavier than it looked, warm as a cup of hot chocolate, and glowing with a steady blue light that seemed to pulse in time with [NAME]'s own heartbeat. The whole cavern seemed to celebrate, crystals brightening around [NAME] like tiny stars saying goodbye. It was time to bring it back to the Midnight Express.",
+      "choices": ["Run back to the train with the Crystal Coal", "Walk carefully — this treasure is precious"],
+      "nextMap": { "0": 15, "1": 15 }
+    },
+    {
+      "id": 15,
+      "type": "procedural",
+      "text": "[NAME] placed the Crystal Coal into the furnace of the Midnight Express. The effect was instant and magnificent. The pressure gauge swung all the way to the right. The pipes stopped rattling and began to hum. The whole engine room glowed with warm blue light, and the train seemed to sigh with relief. The Midnight Express hadn't just been saved — she had been reborn. The whistle blew three triumphant blasts that echoed across the mountains.",
+      "choices": ["Blow the whistle once more for good luck", "Take the engineer's seat and drive her home"],
+      "nextMap": { "0": 16, "1": 16 }
+    },
+    {
+      "id": 16,
+      "type": "procedural",
+      "text": "[NAME] sat in the engineer's seat, hands on the gleaming brass throttle. The Midnight Express surged forward, stronger and smoother than ever before, her wheels singing a joyful song on the rails. Outside the windows, the night sky was full of stars, and the train left a trail of blue sparks like a comet. Every station they passed, people came out to wave and cheer. The Midnight Express was alive again, and [NAME] — the bravest young engineer of all — had made it happen.",
+      "isEnding": true,
+      "endingType": "triumph"
+    }
+  ]
+}
