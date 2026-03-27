@@ -3,7 +3,7 @@
  * Streams story text, detects ---CHOICES--- delimiter, parses JSON choices.
  */
 
-const API_URL = 'https://api.anthropic.com/v1/messages';
+const API_URL = '/api/claude'; // Proxied through Vercel Edge function
 const DEFAULT_CHOICES = ['Continue the adventure', 'Try something different'];
 
 export default class StreamHandler {
@@ -19,12 +19,7 @@ export default class StreamHandler {
 
     const response = await fetch(API_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': this.apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
