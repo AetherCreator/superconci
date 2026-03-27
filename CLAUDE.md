@@ -228,3 +228,24 @@ hunts/
     ├── clue-2/PROMPT.md
     └── TREASURE.md
 ```
+
+
+## Two-Repo Architecture
+This repo is the PRODUCT (code, games, components).
+The OPERATING SYSTEM lives at github.com/AetherCreator/SuperClaude (skills, brain, plans).
+
+## Skills
+All Claude skills live in github.com/AetherCreator/SuperClaude/skills/user/
+Before starting any session, load relevant skills from that repo.
+Key skills for this project:
+- treasure-hunter — THDD hunt navigation (see Treasure Hunt Protocol above)
+- treasure-mapmaker — designing hunt scaffolds
+- frontend-developer — React component work
+- vibe-testing — define done before building
+- context-plus — pre-flight codebase intelligence
+
+## Post-Session Rule
+After making changes to this repo, update the state log in SuperClaude:
+- File: brain/04-projects/superconci-platform.md
+- Update: what changed, current phase, new TODOs
+- This keeps Claude Chat in sync without fetching from this repo
