@@ -25,7 +25,7 @@ const BRIDGE_TRANSITIONS = {
 };
 
 // Check if a segment is appropriate for a 5-year-old
-export async function checkSafety(segmentText, apiKey) {
+export async function checkSafety(segmentText) {
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
@@ -87,7 +87,7 @@ export async function runSafetyPipeline({
   streamHandler,
 }) {
   // Step 1: Check the original segment
-  const check = await checkSafety(segmentText, apiKey);
+  const check = await checkSafety(segmentText);
 
   if (check.safe) {
     return { safe: true, text: segmentText, source: 'ai' };
@@ -109,7 +109,7 @@ export async function runSafetyPipeline({
         onTextChunk: () => {}, // Buffer silently — don't stream retries to screen
       });
 
-      const retryCheck = await checkSafety(retryResult.text, apiKey);
+      const retryCheck = await checkSafety(retryResult.text);
 
       if (retryCheck.safe) {
         if (onRegenerated) onRegenerated(retryResult);
