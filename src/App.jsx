@@ -1,5 +1,5 @@
-import GalaxyHub from './hub/GalaxyHub.jsx'
+import NumberBlasters from "./NumberBlasters.jsx"
 
 export default function App() {
-  return <GalaxyHub />
+  return <NumberBlasters />
 }
