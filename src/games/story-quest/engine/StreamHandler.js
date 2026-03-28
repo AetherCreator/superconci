@@ -3,7 +3,7 @@
  * Streams story text, detects ---CHOICES--- delimiter, parses JSON choices.
  */
 
-const API_URL = '/api/claude'; // Proxied through Vercel Edge function
+const API_URL = 'https://thechefos.com/api/claude';
 const DEFAULT_CHOICES = ['Continue the adventure', 'Try something different'];
 
 export default class StreamHandler {
@@ -18,7 +18,7 @@ export default class StreamHandler {
 
     const response = await fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-product': 'superconci' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
