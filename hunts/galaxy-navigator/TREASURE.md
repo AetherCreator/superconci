@@ -2,13 +2,13 @@
 
 ## The Final Check
 
-You've conquered 6 clues. Before declaring complete, run the full Coci test.
+You've conquered 6 clues. Before declaring complete, run the full Conci test.
 
 ## The Loop
 
 1. App opens → space, stars twinkling, ambient music breathing
 2. Rocket floating center screen, exhaust glowing
-3. Coci grabs the joystick → engine hums, rocket moves, stars parallax
+3. Conci grabs the joystick → engine hums, rocket moves, stars parallax
 4. He explores → finds the glowing planet
 5. He flies into the ring → countdown beeps → launch whoosh → Number Blasters
 6. He plays, wins or loses → exits → return chord → back in space, rocket drifting
@@ -30,7 +30,7 @@ You've conquered 6 clues. Before declaring complete, run the full Coci test.
 
 ## The Real Test
 
-Would Coci put this down? If yes — ship it. If no — what's the one thing that would make him stay?
+Would Conci put this down? If yes — ship it. If no — what's the one thing that would make him stay?
 
 ## Final Action
 
@@ -43,10 +43,10 @@ Clues: 6/6 passed
 Files created: GalaxyNavigator.jsx, useRocket.js, useWorld.js, Joystick.jsx, QuickNav.jsx
 Files modified: HubAudio.js, App.jsx
 Result: [one sentence]
-Coci test: [would he put it down?]
+Conci test: [would he put it down?]
 ```
 
 Commit everything to `feature/galaxy-navigator`:
-`feat: galaxy navigator — Coci flies the rocket through infinite space`
+`feat: galaxy navigator — Conci flies the rocket through infinite space`
 
 Then update App.jsx on the feature branch to import GalaxyNavigator.
