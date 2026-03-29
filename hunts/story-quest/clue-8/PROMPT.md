@@ -1,7 +1,7 @@
 # Clue 8: Story Player UI — Typewriter + Choices + Free Text
 
 ## Mission
-Build the screen where Coci actually plays the story. Text typewriters onto the screen, choices appear as big tappable buttons, free text input shows when the pack allows it, and the avatar reacts to the story mood. This is where the magic happens.
+Build the screen where Conci actually plays the story. Text typewriters onto the screen, choices appear as big tappable buttons, free text input shows when the pack allows it, and the avatar reacts to the story mood. This is where the magic happens.
 
 ## Context
 - Receives text and choices from StoryEngine (Clue 6)
