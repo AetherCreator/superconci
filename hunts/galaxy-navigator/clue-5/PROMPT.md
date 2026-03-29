@@ -6,7 +6,7 @@ Clue 2: Infinite world — done.
 Clue 3: Planets with proximity rings — done.
 Clue 4: Quick nav HUD + autopilot — done.
 
-The world works. Now it needs to connect to the games. Flying into a planet's proximity ring and dwelling there launches the game. Exiting returns Coci exactly where he was.
+The world works. Now it needs to connect to the games. Flying into a planet's proximity ring and dwelling there launches the game. Exiting returns Conci exactly where he was.
 
 ## Your Task
 
