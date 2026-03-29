@@ -71,7 +71,7 @@ Story Quest portal card in the hub should show:
 
 Generate 3 complete story packs as JSON files. Each pack must:
 - Follow the pack schema exactly (Clue 2's PACK-FORMAT.md)
-- Be calibrated for reading level 3 (3rd grade — Coci's actual level)
+- Be calibrated for reading level 3 (3rd grade — Conci's actual level)
 - Have 15-20 segments with 3-4 meaningful branch paths
 - Include 3-4 AI enhancement moments with fallbacks
 - Use hero placeholders throughout ([NAME], [PRONOUN], [POSSESSIVE])
@@ -81,7 +81,7 @@ Generate 3 complete story packs as JSON files. Each pack must:
 ### File: `src/games/story-quest/packs/iron-rails-pack-1.json`
 
 **"The Midnight Express"** — Iron Rails world
-- Coci becomes an apprentice engineer on a magical steam train
+- Conci becomes an apprentice engineer on a magical steam train
 - Core plot: the Midnight Express is losing steam and only a new engineer can find the Crystal Coal to power it
 - Branch paths: take the mountain route vs the bridge route vs the underground tunnel
 - AI moments: first free text in the engine room, mid-story encounter with the Conductor's riddle, climax choice at the Crystal Cavern
@@ -91,17 +91,17 @@ Generate 3 complete story packs as JSON files. Each pack must:
 ### File: `src/games/story-quest/packs/road-ever-on-pack-1.json`
 
 **"The Green Door"** — Road Goes Ever On world
-- Coci discovers a round green door in a hillside (very Tolkien)
+- Conci discovers a round green door in a hillside (very Tolkien)
 - Core plot: beyond the door is a cozy underground home, and its owner has gone on a journey, leaving a map and a note: "Follow the road — it goes ever on"
 - Branch paths: follow the river road vs take the high hills vs explore the old forest
-- AI moments: free text when Coci finds the map, mid-story meeting with a friendly wandering storyteller, climax at the ancient tree
+- AI moments: free text when Conci finds the map, mid-story meeting with a friendly wandering storyteller, climax at the ancient tree
 - Tone: wonder, home, belonging, walking, nature
 - Reading level 3: archaic-flavored prose ("Indeed!" "What a curious thing!"), Tolkien-adjacent vocabulary (hobbit-hole, waistcoat, second breakfast)
 
 ### File: `src/games/story-quest/packs/star-sector-pack-1.json`
 
 **"The Star Map"** — Star Sector world
-- Coci is a junior captain whose ship receives a mysterious star map
+- Conci is a junior captain whose ship receives a mysterious star map
 - Core plot: the map leads to three uncharted planets, each with a piece of a signal that when combined, sends a message home
 - Branch paths: visit the ice planet first vs the jungle planet vs the crystal planet
 - AI moments: free text when decoding the star map, mid-story first contact with a friendly alien, climax assembling the signal
@@ -136,5 +136,5 @@ Generate 3 complete story packs as JSON files. Each pack must:
 - [ ] All packs use hero placeholders correctly
 - [ ] Reading level is appropriate for 3rd grade (verified by reading sample segments aloud)
 - [ ] Every branch path reaches a conclusion segment
-- [ ] Pack content is engaging, warm, and Coci-appropriate
+- [ ] Pack content is engaging, warm, and Conci-appropriate
 - [ ] Complete files, no fragments
