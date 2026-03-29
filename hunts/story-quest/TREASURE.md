@@ -71,11 +71,11 @@ Run through the complete happy path:
 
 These aren't code checks. These are dad checks.
 
-- [ ] **Would I hand this to Coci right now?** No rough edges, no confusing flows, no dead ends.
+- [ ] **Would I hand this to Conci right now?** No rough edges, no confusing flows, no dead ends.
 - [ ] **Does the typewriter feel magical?** Not too fast, not too slow. Like a narrator is telling him a story.
-- [ ] **Does Coci recognize himself in the avatar?** The colors match, the style is charming, it feels like him.
+- [ ] **Does Conci recognize himself in the avatar?** The colors match, the style is charming, it feels like him.
 - [ ] **Do the choices feel real?** Not "go left / go right" but choices that make a kid think.
-- [ ] **Does the free text moment feel special?** When Coci types what he wants to do, does the story actually respond to it?
+- [ ] **Does the free text moment feel special?** When Conci types what he wants to do, does the story actually respond to it?
 - [ ] **Is Read Together a bedtime story?** Would I read this aloud to him and both of us enjoy it?
 - [ ] **Would I be proud to show this to another parent?** Not as a tech demo — as something beautiful for a child.
 
