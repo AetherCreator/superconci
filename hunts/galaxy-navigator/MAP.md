@@ -1,5 +1,5 @@
-# Hunt: Galaxy Navigator — Coci Flies the Rocket
-Goal: Replace the static galaxy hub with a playable space navigation mini-game. Coci steers a rocket through infinite space with a virtual joystick, discovers planets by flying to them, and launches games by proximity landing. Quick-nav HUD lets him jump to any planet instantly.
+# Hunt: Galaxy Navigator — Conci Flies the Rocket
+Goal: Replace the static galaxy hub with a playable space navigation mini-game. Conci steers a rocket through infinite space with a virtual joystick, discovers planets by flying to them, and launches games by proximity landing. Quick-nav HUD lets him jump to any planet instantly.
 Repo: AetherCreator/SuperConci
 Branch: feature/galaxy-navigator
 Base: main
@@ -47,4 +47,4 @@ Load before starting:
 - `CLAUDE.md` — retro aesthetic, Press Start 2P, neon-on-dark, big touch targets
 
 ## Success State (TREASURE)
-Coci picks up the phone. Space. He grabs the joystick. The rocket moves — it has weight, it drifts. He finds a glowing planet. He flies into it. Number Blasters launches. He plays. He exits. He's back exactly where he was in space, rocket drifting. He immediately grabs the joystick again.
+Conci picks up the phone. Space. He grabs the joystick. The rocket moves — it has weight, it drifts. He finds a glowing planet. He flies into it. Number Blasters launches. He plays. He exits. He's back exactly where he was in space, rocket drifting. He immediately grabs the joystick again.
