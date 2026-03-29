@@ -249,3 +249,46 @@ After making changes to this repo, update the state log in SuperClaude:
 - File: brain/04-projects/superconci-platform.md
 - Update: what changed, current phase, new TODOs
 - This keeps Claude Chat in sync without fetching from this repo
+
+---
+
+## AI Gateway — Kid Safety (CRITICAL)
+SuperConci AI calls route through the Cloudflare AI Gateway:
+- Endpoint: https://api.thechefos.app/ai/anthropic/v1/messages
+- Header: x-product: superconci
+- Kid-safety: cf-aig-collect-log-payload: false (auto-set by gateway when x-product is superconci)
+- This means prompts and responses are NEVER stored in AI Gateway logs
+- This is a HARD requirement. Never bypass the gateway for direct Anthropic calls.
+
+## Shared Backend Infrastructure (ALL Tyler's projects)
+
+### TheChefOS Workers (Cloudflare — thechefos-workers repo)
+All Tyler's products share a single Cloudflare Workers backend at api.thechefos.app:
+
+| Worker | Purpose | Route |
+|--------|---------|-------|
+| thechefos-router | Hono router, CORS, service binding dispatch | All routes |
+| thechefos-ai-gateway | Anthropic proxy via CF AI Gateway | /ai/*, /api/claude |
+| thechefos-brain-search | Vectorize semantic search of brain/ | /api/brain/search |
+| thechefos-brain-write | GitHub brain/ push + GRAPH-INDEX auto-update | /api/brain/push |
+| thechefos-mcp-server | ClaudeFare MCP endpoint | /api/mcp |
+| thechefos-oauth-server | OAuth flow for MCP auth | /oauth/* |
+| thechefos-telegram-bot | Telegram bot (Lamora) | /api/telegram |
+
+Data stores: KV (SESSION_KV), Vectorize (superclaude-brain index). No D1 or R2 yet.
+Account ID: cc231edbff18405233612d7afb657f1f | Subdomain: tveg-baking.workers.dev
+
+### Infrastructure Verification Rule
+**State files are claims, not truth. Tools are truth.**
+Before ANY infrastructure planning, run:
+1. `Cloudflare:set_active_account` with cc231edbff18405233612d7afb657f1f
+2. `Cloudflare:workers_list` — deployed Workers
+3. `Cloudflare:d1_databases_list` — D1 databases
+4. `Cloudflare:kv_namespaces_list` — KV stores
+5. `Vercel:list_projects` with team_N1DyKcTkZcNw6KwBzbffimTZ — Vercel deployments
+If tools and state files disagree, tools win. Update the state file immediately.
+
+### Post-Session State Sync
+After ANY session that deploys or modifies infrastructure:
+- Update SuperClaude brain/00-session/ACTIVE-STATE.md
+- Update SuperClaude brain/OPS-BOARD.md
