@@ -24,5 +24,5 @@
 
 ## What Clue 5 Receives
 - Autopilot can deliver rocket to any planet's proximity
-- Proximity detection (Clue 3) + autopilot (Clue 4) = Coci can find and reach any planet
+- Proximity detection (Clue 3) + autopilot (Clue 4) = Conci can find and reach any planet
 - Next: dwell timer on proximity → game launch
