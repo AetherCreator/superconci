@@ -6,7 +6,7 @@ Last updated: 2026-03-27
 
 ## The Big Picture
 
-Story Quest is an AI-powered interactive story experience where Coci IS the hero. He takes a selfie, becomes a storybook character, picks a world, and Claude writes the adventure around him in real-time. Every choice he makes shapes the story. Every story is saved so he can continue tomorrow.
+Story Quest is an AI-powered interactive story experience where Conci IS the hero. He takes a selfie, becomes a storybook character, picks a world, and Claude writes the adventure around him in real-time. Every choice he makes shapes the story. Every story is saved so he can continue tomorrow.
 
 It's a stress test for THDD and the best thing Tyler has ever built for his son.
 
@@ -14,25 +14,25 @@ It's a stress test for THDD and the best thing Tyler has ever built for his son.
 
 ## The Hero Creation Flow
 
-First time only (or when Coci wants a new look):
+First time only (or when Conci wants a new look):
 
 **Step 1: Take your hero photo**
-Big camera button. Coci takes a selfie or Tyler takes one of him.
+Big camera button. Conci takes a selfie or Tyler takes one of him.
 Photo stays on device — never stored on a server. Only sent to Claude API for the single analysis call, then discarded.
 
 **Step 2: Claude Vision reads the photo**
 Single API call with the image:
 ```
-Analyze this child's photo and generate a warm, descriptive character profile for a storybook hero. Include: hair color and style, eye color, skin tone, any distinctive features. Write it as a storybook character description, 2-3 sentences, whimsical and positive. Example: "Coci is a brave adventurer with wild curly dark hair, warm brown eyes that sparkle with curiosity, and a smile that could light up the whole galaxy."
+Analyze this child's photo and generate a warm, descriptive character profile for a storybook hero. Include: hair color and style, eye color, skin tone, any distinctive features. Write it as a storybook character description, 2-3 sentences, whimsical and positive. Example: "Conci is a brave adventurer with wild curly dark hair, warm brown eyes that sparkle with curiosity, and a smile that could light up the whole galaxy."
 ```
 
 **Step 3: Meet your hero**
 Show the generated description on screen with a big illustrated avatar.
 The avatar is a CSS/SVG illustrated character — not a photo, not AI-generated imagery. A charming storybook silhouette with color properties (hair color, skin tone, eye color) mapped from the character description.
-Coci can tap "That's me!" or "Try again."
+Conci can tap "That's me!" or "Try again."
 
 **Step 4: Name your hero**
-Pre-filled with "Coci" but editable.
+Pre-filled with "Conci" but editable.
 This name + character description gets injected into every story forever.
 
 ---
@@ -41,7 +41,7 @@ This name + character description gets injected into every story forever.
 
 Each world has its own visual theme, story tone, character roster, ambient audio, and opening narrative hook.
 
-| World | Setting | Tone | Coci's role |
+| World | Setting | Tone | Conci's role |
 |-------|---------|------|-------------|
 | 🚂 Iron Rails | Steam-powered railway kingdom | Engineering puzzles, adventure | Engineer apprentice |
 | 🚀 Star Sector | Far future space exploration | Discovery, wonder | Junior space captain |
@@ -70,7 +70,7 @@ Format as JSON: { segment: string, choices: string[], allowFreeText: boolean }
 
 **Choice generation:** Dynamic — Claude generates choices based on story context. Each choice is 1 short sentence, action-oriented, starts with a verb.
 
-**Free text moments:** allowFreeText: true appears roughly every 4-5 segments. Coci types what happens next. His input gets incorporated into the next segment naturally.
+**Free text moments:** allowFreeText: true appears roughly every 4-5 segments. Conci types what happens next. His input gets incorporated into the next segment naturally.
 
 ### Story Memory
 Full story history passed on every call.
@@ -124,7 +124,7 @@ Triggered by sentiment keywords in generated segment.
 - "Continue" resumes from exact point
 - Completed stories show badge
 - Max 10 saved stories
-- Auto-generated title: "Coci and the Midnight Express" style
+- Auto-generated title: "Conci and the Midnight Express" style
 
 ---
 
@@ -203,7 +203,7 @@ Hard clues requiring tight specs:
 
 ## Success Metrics
 
-- Coci asks to play Story Quest unprompted
+- Conci asks to play Story Quest unprompted
 - He recognizes himself in the avatar
 - He makes a choice that surprises Tyler
 - A story makes him laugh out loud
