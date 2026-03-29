@@ -26,7 +26,7 @@ Use these tokens in segment text — they're replaced at runtime with the hero's
 
 | Token | Replaced With | Example |
 |-------|---------------|---------|
-| `[NAME]` | Hero's name | "Coci" |
+| `[NAME]` | Hero's name | "Conci" |
 | `[PRONOUN]` | he/she/they | "he" |
 | `[POSSESSIVE]` | his/her/their | "his" |
 | `[HERO_DESCRIPTION]` | Full character description | "a brave adventurer with curly dark hair..." |
