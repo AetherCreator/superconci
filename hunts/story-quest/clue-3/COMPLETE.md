@@ -7,7 +7,7 @@
 1. **Camera** — front-facing getUserMedia, 512px max resize, circular viewfinder, 72px shutter button
 2. **Analyzing** — shimmer animation, Vision API call (Sonnet), photo cleared from state immediately after
 3. **Approval** — description panel, avatar placeholder (for Clue 4), "That's me!" / "Try again"
-4. **Name** — pre-filled "Coci", editable, saves to SQLite via createHero()
+4. **Name** — pre-filled "Conci", editable, saves to SQLite via createHero()
 
 Two API calls:
 - Call 1 (Vision): Photo → prose character description
