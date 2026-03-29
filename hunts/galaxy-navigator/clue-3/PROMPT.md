@@ -4,7 +4,7 @@
 Clue 1: Rocket physics — done.
 Clue 2: Infinite scrolling world with parallax — done. worldToScreen() works.
 
-Now you place planets in the world. They exist at fixed world coordinates and render relative to the rocket's position using worldToScreen(). When the rocket flies close, a proximity ring appears — this is how Coci knows he's found something.
+Now you place planets in the world. They exist at fixed world coordinates and render relative to the rocket's position using worldToScreen(). When the rocket flies close, a proximity ring appears — this is how Conci knows he's found something.
 
 ## Your Task
 
