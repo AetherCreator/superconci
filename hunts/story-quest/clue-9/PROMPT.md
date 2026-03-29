@@ -1,14 +1,14 @@
 # Clue 9: Save/Resume + Story Library
 
 ## Mission
-Build the persistence layer that saves story progress after each choice and the library screen where Coci browses his stories. Resume must reconstruct exact story state — segment, choices, history — so the kid picks up right where they left off.
+Build the persistence layer that saves story progress after each choice and the library screen where Conci browses his stories. Resume must reconstruct exact story state — segment, choices, history — so the kid picks up right where they left off.
 
 ## Context
 - Save triggers after choice selection (confirmed state — design decision locked)
 - Story segments table tracks: what text was shown, which choice was picked, any free text input, whether content was from pack/AI/fallback, whether safety passed
 - Story Library is the "bookshelf" — all saved stories with world icon, title, status, last played
 - Max 10 saved stories per profile
-- Auto-generated titles: "Coci and the Midnight Express" style
+- Auto-generated titles: "Conci and the Midnight Express" style
 
 ## Build
 
@@ -48,9 +48,9 @@ class StorySaver {
     // Read first 3 segments from story_segments
     // Extract key nouns/themes
     // Format as "[HeroName] and the [Key Theme]"
-    // e.g., "Coci and the Midnight Express"
-    // "Coci and the Star Map"
-    // "Coci and the Wandering Road"
+    // e.g., "Conci and the Midnight Express"
+    // "Conci and the Star Map"
+    // "Conci and the Wandering Road"
     // Simple keyword extraction — no API call needed
   }
 }
