@@ -1,13 +1,13 @@
 # Clue 5: World Selector UI
 
 ## Mission
-Build the world selection screen — 6 themed world cards that Coci taps to start (or continue) a story. Each world has its own visual identity, icon, and available story packs.
+Build the world selection screen — 6 themed world cards that Conci taps to start (or continue) a story. Each world has its own visual identity, icon, and available story packs.
 
 ## Context
 - This screen appears after hero creation (first time) or as the main Story Quest menu (returning)
 - Each world card shows: icon, name, pack availability, and whether a story is in progress
 - Reading level filtering may be needed later but v1 shows all worlds
-- Coci's 3 launch worlds (Iron Rails, Road Goes Ever On, Star Sector) will have packs; the other 3 show as "Coming Soon"
+- Conci's 3 launch worlds (Iron Rails, Road Goes Ever On, Star Sector) will have packs; the other 3 show as "Coming Soon"
 
 ## Build
 
@@ -112,7 +112,7 @@ const WORLDS = [
 **Props:**
 ```javascript
 {
-  heroName: 'Coci',
+  heroName: 'Conci',
   profileId: string,
   onSelectWorld: (worldId, packId, storyId?) => void,
   onBack: () => void   // Return to hero screen or hub
