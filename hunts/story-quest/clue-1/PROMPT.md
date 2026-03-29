@@ -27,7 +27,7 @@ Initialize sql.js as Story Quest's storage layer. Create all tables. Build query
 CREATE TABLE IF NOT EXISTS heroes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   profile_id TEXT NOT NULL,
-  name TEXT NOT NULL DEFAULT 'Coci',
+  name TEXT NOT NULL DEFAULT 'Conci',
   description TEXT,
   hair_color TEXT,
   hair_style TEXT,
