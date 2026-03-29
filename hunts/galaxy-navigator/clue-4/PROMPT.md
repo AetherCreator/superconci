@@ -5,7 +5,7 @@ Clue 1: Rocket physics — done.
 Clue 2: Infinite world, parallax — done.
 Clue 3: 3 planets at world positions, proximity rings — done.
 
-Coci can fly to planets now. But a 5-year-old might get lost or frustrated if he can't find what he's looking for. The quick nav HUD is his escape hatch — a strip of planet icons at the top of the screen. Tap one, the rocket flies there automatically.
+Conci can fly to planets now. But a 5-year-old might get lost or frustrated if he can't find what he's looking for. The quick nav HUD is his escape hatch — a strip of planet icons at the top of the screen. Tap one, the rocket flies there automatically.
 
 ## Your Task
 
@@ -49,7 +49,7 @@ The autopilot should take the shortest path — if the planet is closer going th
 
 ## Do Not
 - Launch games on arrival — Clue 5 handles that
-- Make the HUD too tall — max 60px, this is Coci's screen space
+- Make the HUD too tall — max 60px, this is Conci's screen space
 - Remove joystick control during autopilot — player can always override
 
 ## The Feel Test
