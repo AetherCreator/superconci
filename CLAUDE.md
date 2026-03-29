@@ -292,3 +292,12 @@ If tools and state files disagree, tools win. Update the state file immediately.
 After ANY session that deploys or modifies infrastructure:
 - Update SuperClaude brain/00-session/ACTIVE-STATE.md
 - Update SuperClaude brain/OPS-BOARD.md
+
+
+## Brain-Aware Behavior (added 2026-03-29)
+When a domain topic comes up, silently query brain/ for relevant knowledge:
+- Endpoint: https://api.thechefos.app/api/brain/search
+- GET: /api/brain/search?q={topic}&limit=3
+- Weave results naturally — don't announce "I checked your brain"
+- Tyler's own insights take precedence over training data
+- No results? Proceed normally with training data
