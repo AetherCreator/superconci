@@ -1,7 +1,7 @@
 # Clue 3: Hero Creation — Camera + Claude Vision API
 
 ## Mission
-Build the hero creation flow: camera capture → Claude Vision describes the child → second call extracts structured avatar properties → kid approves their character. This is Coci's first impression of Story Quest. It must feel magical.
+Build the hero creation flow: camera capture → Claude Vision describes the child → second call extracts structured avatar properties → kid approves their character. This is Conci's first impression of Story Quest. It must feel magical.
 
 ## Context
 - Two API calls (design decision — locked):
@@ -46,7 +46,7 @@ const response = await fetch('https://api.anthropic.com/v1/messages', {
         },
         {
           type: 'text',
-          text: `You are a warm, whimsical storyteller meeting a young hero for the first time. Look at this child's photo and write a 2-3 sentence character description for a storybook. Include: hair color and style, eye color, skin tone described warmly, and any distinctive joyful features. Write it as if introducing a beloved storybook character. Example tone: "Coci is a brave adventurer with wild curly dark hair, warm brown eyes that sparkle with curiosity, and a smile that could light up the whole galaxy." Be specific to what you see. Be warm. Be magical.`
+          text: `You are a warm, whimsical storyteller meeting a young hero for the first time. Look at this child's photo and write a 2-3 sentence character description for a storybook. Include: hair color and style, eye color, skin tone described warmly, and any distinctive joyful features. Write it as if introducing a beloved storybook character. Example tone: "Conci is a brave adventurer with wild curly dark hair, warm brown eyes that sparkle with curiosity, and a smile that could light up the whole galaxy." Be specific to what you see. Be warm. Be magical.`
         }
       ]
     }]
@@ -86,7 +86,7 @@ eyeColor: "dark_brown" | "brown" | "amber" | "hazel" | "green" | "blue_green" | 
 - Parse the JSON response. On parse failure, retry once. On second failure, use sensible defaults.
 
 **Step 4: Name Your Hero**
-- Pre-filled text input with "Coci" (editable)
+- Pre-filled text input with "Conci" (editable)
 - Large, friendly input field
 - "Start my adventure!" button
 - On confirm: save hero via `createHero()` from storyDB
