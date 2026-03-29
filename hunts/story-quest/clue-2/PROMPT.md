@@ -1,7 +1,7 @@
 # Clue 2: Story Pack Schema + Loader
 
 ## Mission
-Define the canonical story pack JSON format and build the loader that imports packs into SQLite. This is the content pipeline — every story Coci plays flows through this system.
+Define the canonical story pack JSON format and build the loader that imports packs into SQLite. This is the content pipeline — every story Conci plays flows through this system.
 
 ## Context
 - Story packs are authored as JSON files in `src/games/story-quest/packs/`
