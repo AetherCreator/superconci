@@ -9,7 +9,7 @@
 
 ## The Treasure
 
-An AI-powered interactive story experience where Coci IS the hero. He takes a selfie, becomes a storybook character, picks a world, and the story unfolds around him — part hand-crafted adventure, part AI magic. Every choice shapes the story. Every story is saved.
+An AI-powered interactive story experience where Conci IS the hero. He takes a selfie, becomes a storybook character, picks a world, and the story unfolds around him — part hand-crafted adventure, part AI magic. Every choice shapes the story. Every story is saved.
 
 ## Architecture Decisions (Locked)
 
@@ -114,7 +114,7 @@ src/games/story-quest/
 
 ## Success Metrics
 
-- Coci asks to play Story Quest unprompted
+- Conci asks to play Story Quest unprompted
 - He recognizes himself in the avatar
 - He makes a choice that surprises Tyler
 - A story makes him laugh out loud
